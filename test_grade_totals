@@ -1,0 +1,13 @@
+SELECT 
+        stu.CDS_CODE,
+        CDS.District,
+        CDS.School, 
+        tests.test_type, 
+        COUNT(tests.CA_STATE_STUDENT_ID) AS Stu_Count
+FROM test_grades tests
+LEFT JOIN student stu 
+        ON stu.CA_State_Student_id = tests.CA_STATE_STUDENT_ID
+LEFT JOIN cds_codes cds
+        ON cds.CDSCODE = stu.cds_code
+        
+GROUP BY stu.cds_code, tests.test_type
